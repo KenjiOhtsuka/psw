@@ -13,14 +13,12 @@ class Timer:
         self,
         duration_strings: list,
         precision: int = 3,
-        repeat: bool = False,
-        count: int = None,
+        repeat: bool | int = False,
         mute: bool = False,
     ):
         self.duration_strings = duration_strings
         self.precision = precision
         self.repeat = repeat
-        self.count = count
         self.mute = mute
 
         self.listener = KeyListener()
@@ -164,14 +162,14 @@ class Timer:
     def run(self):
         try:
             # 1. 回数指定リピートがある場合
-            if self.count is not None:
-                for i in range(1, self.count + 1):
+            if isinstance(self.repeat, int) and self.repeat is not True:
+                for i in range(1, self.repeat + 1):
                     completed = self.run_single_timer(cycle_num=i)
                     if not completed:
                         print("Timer canceled by user.")
                         break
                     # ループ間に少しウェイトを挟む（即座に次が始まって画面が崩れるのを防ぐ）
-                    if i < self.count:
+                    if i < self.repeat:
                         time.sleep(1)
             
             # 2. 無限リピート（-r）の場合

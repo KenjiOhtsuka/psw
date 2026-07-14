@@ -38,7 +38,6 @@ def test_cli_timer_command(mock_timer):
             duration_strings=["1m", "30s"],
             precision=1,
             repeat=True,
-            count=None,
             mute=True
         )
         mock_timer.return_value.run.assert_called_once()
@@ -47,14 +46,13 @@ def test_cli_timer_command(mock_timer):
 # 4. 'timer' コマンドで count オプションが指定された場合のパーステスト
 @patch("psw.timer.Timer")
 def test_cli_timer_count_option(mock_timer):
-    # 'psw timer 10s -c 3' が入力されたと仮定
-    with patch.object(sys, "argv", ["psw", "timer", "10s", "-c", "3"]):
+    # 'psw timer 10s -r 3' が入力されたと仮定
+    with patch.object(sys, "argv", ["psw", "timer", "10s", "-r", "3"]):
         main()
         
         mock_timer.assert_called_once_with(
             duration_strings=["10s"],
             precision=3,  # デフォルト値
-            repeat=False, # デフォルト値
-            count=3,
+            repeat=3,     # 3 times repeat
             mute=False    # デフォルト値
         )

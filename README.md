@@ -70,11 +70,11 @@ The countdown will be displayed in the console:
 #### Options
 
 * **`-p, --precision`**: Same as the stopwatch mode, specifies the decimal places for seconds (Default: `3`).
-* **`-r, --repeat`**: Automatically restarts the timer when it reaches zero (infinite loop).
-* **`-c, --count <integer>`**: Restarts the timer a specific number of times.
-* *Example*: `psw timer 1m -c 3` will run a 1-minute timer 3 times.
-
-
+* **`-r, --repeat [<integer>]`**: Restarts the timer when it reaches zero.
+  * Use without arguments for an **infinite loop**.
+    * *Example*: `psw timer 1m -r`
+  * Specify an integer to repeat a **specific number of times**.
+    * *Example*: `psw timer 1m -r 3` (Runs a 1-minute timer 3 times)
 * **`-m, --mute`**: Disables the system alert sound (terminal bell) when the timer ends.
 
 #### Interactive Controls (While Running)

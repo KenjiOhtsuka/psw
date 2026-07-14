@@ -51,14 +51,11 @@ def main():
     )
     parser_timer.add_argument(
         "-r", "--repeat",
-        action="store_true",
-        help="Automatically repeat the timer indefinitely"
-    )
-    parser_timer.add_argument(
-        "-c", "--count",
-        type=int,
-        default=None,
-        help="Number of times to repeat the timer (overrides --repeat if set)"
+        nargs="?",      # optional
+        const=True,     # True when only `-r` is used without scceeding number
+        default=False,  # False as default
+        type=int,       # Recognize value as Integer when specified
+        help="Repeat the timer. Use '-r' for infinite loop, or '-r N' to repeat N times."
     )
     parser_timer.add_argument(
         "-m", "--mute",
@@ -66,7 +63,6 @@ def main():
         help="Mute the terminal bell (\a) alert sound when the timer ends"
     )
 
-    # 引数の解析を実行
     args = parser.parse_args()
 
     # 各コマンドに応じた処理の分岐
@@ -88,7 +84,6 @@ def main():
                 duration_strings=args.duration,
                 precision=args.precision,
                 repeat=args.repeat,
-                count=args.count,
                 mute=args.mute
             )
             timer.run()
