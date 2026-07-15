@@ -4,7 +4,7 @@ from psw.stopwatch import Stopwatch
 from psw.timer import Timer
 
 # パッケージのバージョン（pyproject.toml と合わせておくと管理しやすいです）
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 # `from psw import *` をした際にインポートされるクラスを指定
 __all__ = ["Stopwatch", "Timer"]
