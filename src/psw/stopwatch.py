@@ -32,7 +32,7 @@ class Stopwatch:
         return f"{h:02d} h {m:02d} m {seconds_str} s"
 
     def run(self):
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.running = True
         
         print("Stopwatch started. Press 's' to pause/resume, 'l' to record lap, 'q' to quit.\n")
@@ -42,24 +42,25 @@ class Stopwatch:
         try:
             while True:
                 if self.running:
-                    self.elapsed_time = time.time() - self.start_time
+                    self.elapsed_time = time.monotonic() - self.start_time
                 
                 # カーソルを上に戻して、現在の時間を描画
-                # \033[F はカーソルを1行上に移動、\033[K は行末までクリア
+                # \033[F moves cursor to the previous line,
+                # \033[K clear the text to the end of the line.
                 sys.stdout.write(f"\033[F\033[K{self.format_time(self.elapsed_time)}\n")
                 sys.stdout.flush()
 
-                # キー入力のチェック
+                # check key input
                 char = self.listener.get_char()
                 if char == 'q':
                     break
                 elif char == 's':
                     if self.running:
-                        # 一時停止
+                        # stop
                         self.elapsed_time = time.time() - self.start_time
                         self.running = False
                     else:
-                        # 再開
+                        # resume
                         self.start_time = time.time() - self.elapsed_time
                         self.running = True
                 elif char == 'l':
