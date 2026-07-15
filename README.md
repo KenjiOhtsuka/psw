@@ -83,8 +83,4 @@ The countdown will be displayed in the console:
 * **`q` (or `Ctrl+C`)**: Cancel and exit the timer.
 
 > [!NOTE]
-> When the timer reaches `00 h 00 m 00.000 s`, a standard terminal bell sound (`\a`) will ring to notify you. No special OS-level audio permissions or external audio library imports are required, making it lightweight and cross-platform compatible.
-
-## License
-
-[MIT License](https://www.google.com/search?q=LICENSE)
+> When the timer reaches `00 h 00 m 00.000 s`, the application plays a platform-appropriate alert notification (using `winsound.MessageBeep()` on Windows, and emitting a standard terminal bell sound `\a` on other platforms or as a fallback). No special OS-level audio permissions or external audio library imports are required, making it lightweight and cross-platform compatible.
