@@ -84,3 +84,13 @@ To keep the codebase clean and consistent, please follow these guidelines:
 * **PEP 8**: Follow standard Python coding style guidelines.
 * **Type Hints**: Use type hinting for function arguments and return values where appropriate.
 * **Docstrings**: Add docstrings to new classes and functions to explain their purpose and behavior.
+
+## To Build Package
+
+```
+# 1. Install packaging tool
+pip install pyinstaller
+
+# 2. Build
+python -m PyInstaller --onefile --paths src --name psw src/psw/__main__.py
+```

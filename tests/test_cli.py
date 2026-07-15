@@ -37,7 +37,7 @@ def test_cli_timer_command(mock_timer):
         mock_timer.assert_called_once_with(
             duration_strings=["1m", "30s"],
             precision=1,
-            repeat=True,
+            repeat=-1,
             mute=True
         )
         mock_timer.return_value.run.assert_called_once()

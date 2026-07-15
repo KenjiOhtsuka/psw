@@ -52,8 +52,8 @@ def main():
     parser_timer.add_argument(
         "-r", "--repeat",
         nargs="?",      # optional
-        const=True,     # True when only `-r` is used without scceeding number
-        default=False,  # False as default
+        const=-1,       # -1 when only `-r` is used without scceeding number
+        default=1,
         type=int,       # Recognize value as Integer when specified
         help="Repeat the timer. Use '-r' for infinite loop, or '-r N' to repeat N times."
     )

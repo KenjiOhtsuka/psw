@@ -13,7 +13,7 @@ class Timer:
         self,
         duration_strings: list,
         precision: int = 3,
-        repeat: bool | int = False,
+        repeat: int = 1,
         mute: bool = False,
     ):
         self.duration_strings = duration_strings
@@ -89,6 +89,7 @@ class Timer:
         1回分のタイマーカウントダウンを実行する。
         戻り値: True (完走した), False (ユーザーが 'q' で中断した)
         """
+        print(1)
         self.remaining_time = self.total_seconds
         self.start_time = time.time()
         self.running = True
@@ -160,9 +161,10 @@ class Timer:
             print()
 
     def run(self):
+        print("run")
         try:
             # 1. 回数指定リピートがある場合
-            if isinstance(self.repeat, int) and self.repeat is not True:
+            if self.repeat > 0:
                 for i in range(1, self.repeat + 1):
                     completed = self.run_single_timer(cycle_num=i)
                     if not completed:
@@ -173,7 +175,7 @@ class Timer:
                         time.sleep(1)
             
             # 2. 無限リピート（-r）の場合
-            elif self.repeat:
+            elif self.repeat == -1:
                 cycle = 1
                 while True:
                     completed = self.run_single_timer(cycle_num=cycle)
@@ -185,9 +187,10 @@ class Timer:
 
             # 3. 通常の1回切りタイマーの場合
             else:
-                completed = self.run_single_timer()
-                if not completed:
-                    print("Timer canceled by user.")
+                print("Invalid repeat count. It must be greater than 0, or -1 for infinite.")
+                # completed = self.run_single_timer()
+                # if not completed:
+                #     print("Timer canceled by user.")
 
         finally:
             self.listener.close()
