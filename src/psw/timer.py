@@ -125,11 +125,11 @@ class Timer:
                 elif char == 's':
                     if self.running:
                         # 一時停止
-                        self.total_seconds = self.remaining_time
                         self.running = False
                     else:
                         # 再開
-                        self.start_time = time.monotonic()
+                        elapsed = self.total_seconds - self.remaining_time
+                        self.start_time = time.monotonic() - elapsed
                         self.running = True
 
                 sleep_time = 0.01 if self.precision > 2 else 0.05
