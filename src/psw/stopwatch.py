@@ -5,6 +5,8 @@ from psw.utils import KeyListener
 
 class Stopwatch:
     def __init__(self, precision: int = 3):
+        if precision < 0:
+            raise ValueError("precision must be >= 0")
         self.precision = precision
         self.listener = KeyListener()
         

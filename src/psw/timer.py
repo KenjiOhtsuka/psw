@@ -16,6 +16,8 @@ class Timer:
         repeat: int = 1,
         mute: bool = False,
     ):
+        if precision < 0:
+            raise ValueError("precision must be >= 0")
         self.duration_strings = duration_strings
         self.precision = precision
         self.repeat = repeat
