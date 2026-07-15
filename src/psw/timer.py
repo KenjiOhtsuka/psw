@@ -128,7 +128,7 @@ class Timer:
                         self.running = False
                     else:
                         # 再開
-                        self.start_time = time.time()
+                        self.start_time = time.monotonic()
                         self.running = True
 
                 sleep_time = 0.01 if self.precision > 2 else 0.05
