@@ -1,0 +1,43 @@
+name: Build psw
+
+on:
+  push:
+    tags:
+      - "v*"
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build
+        run: |
+          pyinstaller --onefile --name psw ./src/psw/__main__.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: psw-${{ matrix.os }}
+          path: dist/psw*
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: dist/psw*
