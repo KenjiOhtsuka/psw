@@ -59,11 +59,11 @@ class Stopwatch:
                 elif char == 's':
                     if self.running:
                         # stop
-                        self.elapsed_time = time.time() - self.start_time
+                        self.elapsed_time = time.monotonic() - self.start_time
                         self.running = False
                     else:
                         # resume
-                        self.start_time = time.time() - self.elapsed_time
+                        self.start_time = time.monotonic() - self.elapsed_time
                         self.running = True
                 elif char == 'l':
                     if self.running:

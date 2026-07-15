@@ -16,7 +16,7 @@ class KeyListener:
 
     def __init__(self):
         self.old_settings = None
-        if not is_windows:
+        if not is_windows and sys.stdin.isatty():
             # ターミナルの標準入力設定を保存
             self.old_settings = termios.tcgetattr(sys.stdin)
 

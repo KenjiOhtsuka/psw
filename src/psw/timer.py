@@ -91,9 +91,8 @@ class Timer:
         1回分のタイマーカウントダウンを実行する。
         戻り値: True (完走した), False (ユーザーが 'q' で中断した)
         """
-        print(1)
         self.remaining_time = self.total_seconds
-        self.start_time = time.time()
+        self.start_time = time.monotonic()
         self.running = True
 
         # 進捗タイトルの表示
@@ -107,7 +106,7 @@ class Timer:
             while self.remaining_time > 0:
                 if self.running:
                     # 経過時間を引き、残りの時間を計算
-                    elapsed = time.time() - self.start_time
+                    elapsed = time.monotonic() - self.start_time
                     self.remaining_time = self.total_seconds - elapsed
                     if self.remaining_time < 0:
                         self.remaining_time = 0.0
