@@ -37,7 +37,7 @@ class Stopwatch:
         self.start_time = time.monotonic()
         self.running = True
         
-        print("Stopwatch started. Press 's' to pause/resume, 'l' to record lap, 'q' to quit.\n")
+        print("Stopwatch started. Press 's' to pause/resume, 'l' to record lap/reset, 'q' to quit.\n")
         # 1行分のスペースをあける（リアルタイム描画用）
         print() 
 
@@ -70,9 +70,15 @@ class Stopwatch:
                         lap_num = len(self.laps) + 1
                         lap_str = f"  Lap #{lap_num:02d}: {self.format_time(self.elapsed_time)}"
                         self.laps.append(lap_str)
-                        # 一旦現在の時間表示の下にラップを挿入するために、描画位置を調整
                         print(lap_str)
-                        print() # 次の時間描画のための空行
+                        print()
+                    else:
+                        if self.elapsed_time != 0.0:
+                            self._print_summary()
+                            print()
+                            print()
+                        self.elapsed_time = 0.0
+                        self.laps = []
 
                 # CPU負荷を下げるためのウェイト（ミリ秒精度に合わせて調整）
                 # 精度が高い場合は更新頻度を上げ、低い場合は下げる
@@ -83,6 +89,9 @@ class Stopwatch:
             self.listener.close()
             
         # 終了時のまとめ表示
+        self._print_summary()
+
+    def _print_summary(self):
         print(f"\n--- Finished ---")
         print(f"Total Time: {self.format_time(self.elapsed_time)}")
         if self.laps:
