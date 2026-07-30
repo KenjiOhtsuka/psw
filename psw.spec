@@ -1,8 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+import os
 
 a = Analysis(
-    ['src\\psw\\__main__.py'],
+    [os.path.join('src', 'psw', '__main__.py')],
     pathex=['src'],
     binaries=[],
     datas=[],
