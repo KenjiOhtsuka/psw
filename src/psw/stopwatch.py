@@ -88,8 +88,8 @@ class Stopwatch:
         finally:
             self.listener.close()
             
-        # 終了時のまとめ表示
-        self._print_summary()
+        if self.elapsed_time != 0.0 or self.laps:
+            self._print_summary()
 
     def _print_summary(self):
         print(f"\n--- Finished ---")

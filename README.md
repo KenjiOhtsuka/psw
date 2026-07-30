@@ -41,7 +41,7 @@ The live clock will be displayed in the console:
 While the stopwatch is active, you can control it in real-time using the following keys:
 
 * **`s`**: Pause / Resume the stopwatch.
-* **`l`**: Record a lap time. The current lap time will be printed below the running clock without stopping the main timer.
+* **`l`**: Record a lap (while running) or reset the stopwatch (while stopped). When stopped, the accumulated summary is printed and the time is reset to `00 h 00 m 00.000 s`.
 * **`q` (or `Ctrl+C`)**: Quit the stopwatch and display the final summary.
 
 ### 2. Timer Mode
