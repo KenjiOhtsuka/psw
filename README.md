@@ -64,7 +64,6 @@ The countdown will be displayed in the console:
 
 ```text
 00 h 05 m 30.000 s
-
 ```
 
 #### Options
