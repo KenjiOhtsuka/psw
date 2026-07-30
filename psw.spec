@@ -33,6 +33,9 @@ exe = EXE(
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
+    # macOS: set codesign_identity and entitlements_file before publishing
+    # signed binaries. Unsigned executables will be blocked by Gatekeeper;
+    # users can work around with: xattr -dr com.apple.quarantine psw
     codesign_identity=None,
     entitlements_file=None,
 )
