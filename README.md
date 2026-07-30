@@ -4,11 +4,26 @@
 
 ## Install
 
-You can install `psw` via pip:
+### Via pip (Python library)
 
 ```bash
 pip install psw
 ```
+
+### Via pre-built binary
+
+Pre-built binaries for Windows, macOS, and Linux are attached to each [release](https://github.com/anomalyco/psw/releases). No Python runtime required — just download, extract, and run.
+
+| Platform | Binary |
+|----------|--------|
+| Windows  | `psw-windows-latest/psw.exe` |
+| macOS    | `psw-macos-latest/psw` |
+| Linux    | `psw-ubuntu-latest/psw` |
+
+> **macOS note**: unsigned binaries are blocked by Gatekeeper. After download, run:
+> ```bash
+> xattr -dr com.apple.quarantine psw
+> ```
 
 ## Usage
 
